@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="mainDiv">
+        <div class="formDin">
+            <h3>Todo Application</h3>
+
+            {% for todo in todos %}
+            <div class="eachDiv">
+                <h4>{{todo.title}}</h4>
+                <p>{{todo.description}}</p>
+        
+                <div class="btns">
+                    <a href="{% url 'update' pk=todo.pk %}"><button>Update</button></a>
+                    <a href="{% url 'delete' pk=todo.pk %}"><button>Delete</button></a>
+                </div>
+            </div>
+            {% endfor %}
+    
+    
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Title" name="title">
+                <input type="text" placeholder="Description" name="description">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    
+    </div>
+</body>
+</html>
